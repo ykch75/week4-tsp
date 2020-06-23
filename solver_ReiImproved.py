@@ -68,6 +68,28 @@ def goGreedy(cities) :
         citiesLeft = list[1]
     return citiesGone
 
+def mergeArea(area1, area2): #area should be a list. Return a list.
+    if len(area1) == 0 :
+        return area2
+    if len(area2) == 0 :
+        return area1
+    start = area1[0]
+    connect = area2[0]
+    dist = distance(start, connect)
+    result = []
+    for a in area1 :
+        for b in area2 :
+            if distance(a,b) < dist :
+                connect = b
+                start = a
+                dist = distance(a,b)
+    startIndex = area1.index(start) + 1
+    connectIndex = area2.index(connect) + 1
+    result.extend(area1[:startIndex])
+    result.extend(area2[connectIndex:])
+    result.extend(area2[:connectIndex])
+    result.extend(area1[startIndex:])
+    return result
 
 def solve(cities) :
     G = g(cities)
@@ -76,6 +98,7 @@ def solve(cities) :
     goIn = ["b", "d", "f", "h"]
     order = ["a", "b", "c", "d", "e", "f", "g", "h", "O"]
     areaGreedy = {"a":[], "b":[], "c":[], "d":[], "e":[], "f":[], "g":[], "h":[], "O":[]}
+    solutionCity = []
     solution = []
     for city in cities :
         tan = gTan(G, city)
@@ -88,9 +111,14 @@ def solve(cities) :
     for x in goIn :
         areaGreedy[x].extend(goGreedy(area[x]))
 
-    for n in order :
-        for j in areaGreedy[n] :
-            solution.append(cities.index(j))
+    for i in order :
+        solutionCity = mergeArea(solutionCity, areaGreedy[i])
+
+    for city in solutionCity :
+        solution.append(cities.index(city))
+    # for n in order :
+    #     for j in areaGreedy[n] :
+    #         solution.append(cities.index(j))
 
     return solution
 
