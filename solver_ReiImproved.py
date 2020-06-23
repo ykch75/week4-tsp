@@ -68,27 +68,32 @@ def goGreedy(cities) :
         citiesLeft = list[1]
     return citiesGone
 
+def distShorten(city1_1, city1_2, city2_1, city2_2): #To calculate the distance shorten.
+    originDist = distance(city1_1, city1_2) + distance(city1_2, city2_2)
+    newDist = distance(city1_1, city2_2) + distance(city1_2,city2_1)
+    return originDist - newDist
+
 def mergeArea(area1, area2): #area should be a list. Return a list.
-    if len(area1) == 0 :
+    nA1 = len(area1)
+    nA2 = len(area2)
+    if nA1 == 0 :
         return area2
-    if len(area2) == 0 :
+    if nA2 == 0 :
         return area1
-    start = area1[0]
-    connect = area2[0]
-    dist = distance(start, connect)
+    start = -1
+    connect = -1
+    distS = distShorten(area1[-1], area1[0], area2[-1], area2[0])
     result = []
-    for a in area1 :
-        for b in area2 :
-            if distance(a,b) < dist :
-                connect = b
-                start = a
-                dist = distance(a,b)
-    startIndex = area1.index(start) + 1
-    connectIndex = area2.index(connect) + 1
-    result.extend(area1[:startIndex])
-    result.extend(area2[connectIndex:])
-    result.extend(area2[:connectIndex])
-    result.extend(area1[startIndex:])
+    for i in range(0,nA1-1) :
+        for j in range(0,nA2-1) :
+            if  distShorten(area1[i], area1[i+1], area2[j], area2[j+1]) > distS :
+                connect = j
+                start = i
+                distS = distShorten(area1[i], area1[i+1], area2[j], area2[j+1])
+    result.extend(area1[:start +1])
+    result.extend(area2[connect +1:])
+    result.extend(area2[:connect +1])
+    result.extend(area1[start +1:])
     return result
 
 def solve(cities) :
@@ -96,7 +101,7 @@ def solve(cities) :
     area = {"a":[], "b":[], "c":[], "d":[], "e":[], "f":[], "g":[], "h":[], "O":[]}
     goOut = ["a", "c", "e", "g"]
     goIn = ["b", "d", "f", "h"]
-    order = ["a", "b", "c", "d", "e", "f", "g", "h", "O"]
+    order = ["a", "b", "g", "h", "e", "f", "c", "d", "O"]
     areaGreedy = {"a":[], "b":[], "c":[], "d":[], "e":[], "f":[], "g":[], "h":[], "O":[]}
     solutionCity = []
     solution = []
