@@ -56,17 +56,16 @@ void move(vector<vector<double>   > dist,int num){
             }
             basicD[curCity][i]=min_dist;
         }
-        //cout << basicD[curCity][j] << endl;
         for(i=0;i<num;i++) dist[curCity][i]=dist[i][curCity]=INF;
         tour.push_back(nextCity);
         curCity = nextCity;
     }
     for(int i=0;i<num;i++) input(tour[i]);
     double total=0;
-    for(int i=0;i<num;i++) {
+    for(int i=0;i<num-1;i++) {
         total+=basicD[tour[i]][tour[i+1]];
     }
-    printf("total:%lf\n",total);
+    printf("path:%lf\n",total);
 }
 /*
 void twoOpt(vector<int> tour,vector<vector<double>   > dist,int num){
