@@ -1,5 +1,12 @@
 Build@Mercari 2020 Week4 - Travelling Salesman PRoblem Challenges.
 
+# 感想
+* greedyを実装し、最短経路を選べるようになったが、総距離を出力できなかった
+* 2-opt法も試したが、動かず、正しいかわからなかった
+* CSVファイルから入力し格納するのが大変だった
+* 関数を自分でたくさん作ったのは初めてだったので勉強になった
+* Pythonを勉強しようと思った
+
 This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://github.com/hayatoito/google-step-tsp-2016).
 
 1. 問題
