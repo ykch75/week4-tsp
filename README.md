@@ -1,6 +1,7 @@
 Build@Mercari 2020 Week4 - Travelling Salesman PRoblem Challenges.
 
 # 感想
+* forkを初めて使ったので、勉強になった
 * greedyを実装し、最短経路を選べるようになったが、総距離を出力できなかった
 * 2-opt法も試したが、動かず、正しいかわからなかった
 * CSVファイルから入力し格納するのが大変だった
