@@ -54,7 +54,7 @@ void move(vector<vector<double>   > dist,int num){
                 nextCity=unCity[i];
                 min_dist=dist[curCity][unCity[i]];
             }
-            basicD[curCity][i]=min_dist;
+            basicD[curCity][nextCity]=min_dist;
         }
         for(i=0;i<num;i++) dist[curCity][i]=dist[i][curCity]=INF;
         tour.push_back(nextCity);
@@ -65,7 +65,7 @@ void move(vector<vector<double>   > dist,int num){
     for(int i=0;i<num-1;i++) {
         total+=basicD[tour[i]][tour[i+1]];
     }
-    printf("path:%lf\n",total);
+    printf("path:\t%lf\n",total);
     twoOpt(tour,basicD,num);
 }
 
@@ -82,7 +82,7 @@ void twoOpt(vector<int> tour,vector<vector<double>   > basicD,int num){
     for(int i=0;i<num-1;i++) {
         total+=basicD[tour[i]][tour[i+1]];
     }
-    printf("path(twoOpt):%lf\n",total);
+    printf("twoOpt:\t%lf\n",total);
 }
 
 //ファイルに書き込む
