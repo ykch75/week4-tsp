@@ -6,6 +6,7 @@ Build@Mercari 2020 Week4 - Travelling Salesman PRoblem Challenges.
 * CSVファイルから入力し格納するのが大変だった
 * 関数を自分でたくさん作ったのは初めてだったので勉強になった
 * Pythonを勉強しようと思った
+* なぜか2-opt法を実装したときの方がパスが長かった
 
 This is forked from [https://github.com/hayatoito/google-step-tsp-2016](https://github.com/hayatoito/google-step-tsp-2016).
 

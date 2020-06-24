@@ -66,22 +66,28 @@ void move(vector<vector<double>   > dist,int num){
         total+=basicD[tour[i]][tour[i+1]];
     }
     printf("path:%lf\n",total);
+    twoOpt(tour,basicD,num);
 }
-/*
-void twoOpt(vector<int> tour,vector<vector<double>   > dist,int num){
+
+void twoOpt(vector<int> tour,vector<vector<double>   > basicD,int num){
     for(int i=0;i<num;i++){
         for(int j=0;j<num;j++){
-            if(dist[tour[i]][tour[i+1]]>dist[tour[j]][tour[j+1]]){
+            if(basicD[tour[i]][tour[i+1]]>basicD[tour[j]][tour[j+1]]){
                 swap(tour[i],tour[j]);
             }
         }
     }
     for(int i=0;i<num;i++) input(tour[i]);
-}*/
+        double total=0;
+    for(int i=0;i<num-1;i++) {
+        total+=basicD[tour[i]][tour[i+1]];
+    }
+    printf("path(twoOpt):%lf\n",total);
+}
 
 //ファイルに書き込む
 void input(int i){
-    string filename = "solution_yours_6.csv";
+    string filename = "solution_yours_0.csv";
     ofstream writing_file;
     writing_file.open(filename,ios::app);
     writing_file << i << endl;
@@ -101,7 +107,7 @@ void solve(point city[],int num){
 int main(int argc,char* argv[]){
     ifstream fin(argv[1]);//ファイルを開く
     string str;
-    remove("solution_yours_6.csv");
+    remove("solution_yours_0.csv");
     //ファイルの初期化
     struct point city[def];
     int num=0;
